@@ -17,7 +17,7 @@ class RoadDataset(Dataset):
         self.ids.sort()
 
 
-    def len(self):
+    def __len__(self):
         return len(self.ids)
     
 
