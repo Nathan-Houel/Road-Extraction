@@ -31,6 +31,10 @@ class RoadDataset(Dataset):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
 
+        # Réduction dimension 1024 -> 256
+        img = cv2.resize(img, (256, 256))
+        mask = cv2.resize(mask, (256, 256), interpolation=cv2.INTER_NEAREST)
+
         # Normalisation
         img = img.astype('float32')/255.0
         mask = mask.astype('float32')/255.0
