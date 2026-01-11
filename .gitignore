@@ -12,5 +12,3 @@ data/
 .ipynb_checkpoints/
 .vscode/
 *.pth
-*.png
-*.jpg

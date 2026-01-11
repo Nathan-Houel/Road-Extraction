@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_45219071d564472e6c04c271380ae6f9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_45219071d564472e6c04c271380ae6f9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_45219071d564472e6c04c271380ae6f9 = L.map(
+                "map_45219071d564472e6c04c271380ae6f9",
+                {
+                    center: [47.4628405, 0.9919125],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_59454a6fe1224f5ceee965fc6765182b = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_59454a6fe1224f5ceee965fc6765182b.addTo(map_45219071d564472e6c04c271380ae6f9);
+        
+    
+            var image_overlay_1238ccc6ddbb69660f27f8ca02bd8b28 = L.imageOverlay(
+                "data:image/png;base64,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",
+                [[47.460869, 0.989394], [47.464812, 0.994431]],
+                {
+  "opacity": 1,
+}
+            );
+        
+    
+            image_overlay_1238ccc6ddbb69660f27f8ca02bd8b28.addTo(map_45219071d564472e6c04c271380ae6f9);
+        
+</script>
+</html>
