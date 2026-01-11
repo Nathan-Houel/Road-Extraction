@@ -1,55 +1,55 @@
-# 🛣️ Road Extraction - Segmentation de Routes par Images Satellites
+# 🛣️ Road Extraction - Road Segmentation from Satellite Images
 
-Ce projet implémente une solution de Deep Learning pour l'extraction automatique de réseaux routiers à partir d'images satellites et aériennes. Il utilise une architecture de segmentation sémantique avancée pour générer des masques de routes précis, avec un cas d'usage spécifique sur la ville de Strasbourg.
+This project implements a Deep Learning solution for the automatic extraction of road networks from satellite and aerial images. It uses an advanced semantic segmentation architecture to generate accurate road masks, with a specific use case on the city of Strasbourg.
 
-## 📋 Aperçu du Projet
+## 📋 Project Overview
 
-L'objectif est de traiter des images géoréférencées (TIFF) ou classiques (JPG) pour en extraire la structure routière. Le projet inclut l'exploration des données, l'entraînement (ou le chargement) d'un modèle, et la visualisation des résultats sous forme de cartes interactives.
+The goal is to process georeferenced images (TIFF) or standard images (JPG) to extract the road structure. The project includes data exploration, model training (or loading), and results visualization in the form of interactive maps.
 
-### Fonctionnalités principales
-* **Segmentation Sémantique** : Utilisation de réseaux de neurones convolutifs (CNN) pour la classification pixel par pixel (Route vs Non-Route).
-* **Traitement Géospatial** : Gestion d'images géoréférencées (TIFF) pour projeter les prédictions sur des cartes réelles.
-* **Visualisation Interactive** : Génération de cartes HTML pour superposer les routes détectées sur des fonds de carte réels.
+### Main Features
+* **Semantic Segmentation** : Uses Convolutional Neural Networks (CNN) for pixel-by-pixel classification (Road vs. Non-Road).
+* **Geospatial Processing** : Handles georeferenced images (TIFF) to project predictions onto real-world maps.
+* **Interactive Visualization** : Generates HTML maps to overlay detected roads on real map backgrounds.
 
-## 🧠 Architecture Technique
+## 🧠 Technical Architecture
 
-Le cœur du système repose sur une architecture **U-Net**, standard de l'industrie pour la segmentation d'images.
+The core of the system relies on a **U-Net** architecture, an industry standard for image segmentation.
 
-* **Modèle** : U-Net
-* **Encodeur (Backbone)** : ResNet-34 pré-entraîné sur ImageNet pour une extraction efficace des caractéristiques.
-* **Librairie** : `segmentation-models-pytorch` et `torch`.
-* **Entrée** : Images RGB (3 canaux).
-* **Sortie** : Masque binaire (1 canal) représentant la probabilité de présence d'une route.
+* **Model** : U-Net
+* **Encoder (Backbone)** : ResNet-34 pre-trained on ImageNet for efficient feature extraction.
+* **Library** : `segmentation-models-pytorch` and `torch`.
+* **Input** : RGB Images (3 channels).
+* **Output** : Binary mask (1 channel) representing the probability of a road being present.
 
-## 📂 Structure du Répertoire
+## 📂 Directory Structure
 
 ```bash
 road-extraction/
-├── 📂 images/              # Images sources (ex: Strasbourg.jpg, Test_image.jpg)
-├── 📂 maps/                # Cartes interactives générées (fichiers .html)
-├── 📂 src/                 # Code source Python
-│   ├── dataset.py          # Gestion du chargement des données et PyTorch Datasets
-│   └── model.py            # Définitions relatives au modèle
-├── Exploration.ipynb       # Notebook principal : démo, inférence et visualisation
-├── courbe_loss.png         # Graphique de suivi de l'entraînement
-├── UNet_20.pth             # (Fichier attendu) Poids du modèle entraîné
-├── pyproject.toml          # Configuration du projet et dépendances
-└── .python-version         # Version Python cible
+├── 📂 images/              # Source images (e.g., Strasbourg.jpg, Test_image.jpg)
+├── 📂 maps/                # Generated interactive maps (.html files)
+├── 📂 src/                 # Python source code
+│   ├── dataset.py          # Data loading management and PyTorch Datasets
+│   └── model.py            # Model-related definitions
+├── Exploration.ipynb       # Main notebook: demo, inference, and visualization
+├── courbe_loss.png         # Training loss plot
+├── UNet_20.pth             # (Expected file) Trained model weights
+├── pyproject.toml          # Project configuration and dependencies
+└── .python-version         # Target Python version
 ```
 
-## 🛠️ Installation et Pré-requis
+## 🛠️ Installation and Prerequisites
 
-Ce projet utilise Python. Il est recommandé d'utiliser un environnement virtuel (via `uv`, `conda` ou `venv`).
+This project uses Python. It is recommended to use a virtual environment (via uv, conda, or venv).
 
-### Dépendances principales
-Les bibliothèques suivantes sont nécessaires pour exécuter le notebook et les scripts :
+### Main Dependencies
+The following libraries are required to run the notebook and scripts :
 
 * `torch` (PyTorch)
 * `segmentation-models-pytorch`
 * `opencv-python` (cv2)
 * `matplotlib`
-* `folium` (pour la génération de cartes)
-* `rasterio` (pour les fichiers .tif géoréférencés)
+* `folium` (for map generation)
+* `rasterio` (for georeferenced .tif files)
 * `numpy`
 
 ### Installation via pip
@@ -58,27 +58,27 @@ Les bibliothèques suivantes sont nécessaires pour exécuter le notebook et les
 pip install torch segmentation-models-pytorch opencv-python matplotlib folium rasterio numpy
 ```
 
-(Si vous utilisez `uv`, le fichier `uv.lock` présent dans le dépôt assure la reproductibilité de l'environnement).
+(If you are using uv, the uv.lock file present in the repository ensures environment reproducibility).
 
-## 🚀 Utilisation
+## 🚀 Usage
 
-Le point d'entrée principal pour tester le projet est le notebook Jupyter.
+The main entry point to test the project is the Jupyter notebook.
 
-1. **Lancer le Notebook :**
-   Ouvrez `Exploration.ipynb` dans Jupyter Lab ou VS Code.
+1. **Launch the Notebook :**
+   Open `Exploration.ipynb` in Jupyter Lab or VS Code.
 
-2. **Workflow du Notebook :**
-   * **Chargement des données :** Le script charge les images depuis le dossier `data/` ou `images/`.
-   * **Initialisation du Modèle :** Chargement de l'architecture U-Net (ResNet34).
-   * **Inférence :** Le modèle charge les poids pré-entraînés (ex: `UNet_20.pth`) et effectue une prédiction sur les images de test.
-   * **Visualisation :** Les masques prédits sont affichés avec Matplotlib et exportés en cartes interactives dans le dossier `maps/`.
+2. **Notebook Workflow :**
+   * **Data Loading :** The script loads images from the `data/` or `images/` folder.
+   * **Model Initialization :** Loads the U-Net architecture (ResNet34).
+   * **Inference :** The model loads pre-trained weights (e.g., `UNet_20.pth`) and performs prediction on test images.
+   * **Visualization :** Predicted masks are displayed using Matplotlib and exported as interactive maps in the `maps/` folder.
 
-## 📊 Résultats
+## 📊 Results
 
-Le projet génère des visualisations permettant de comparer l'image satellite originale et le masque de route prédit.
+The project generates visualizations allowing for a comparison between the original satellite image and the predicted road mask.
 
-Les fichiers de sortie dans le dossier `maps/` (ex: `Strasbourg.html`) peuvent être ouverts dans n'importe quel navigateur web pour explorer le réseau routier extrait superposé à une carte du monde.
+The output files in the `maps/` folder (e.g., `Strasbourg.html`) can be opened in any web browser to explore the extracted road network overlaid on a world map.
 
-## 👤 Auteur
+## 👤 Author
 
-Projet réalisé par Nathan Houel.
+Project created by Nathan Houel.
